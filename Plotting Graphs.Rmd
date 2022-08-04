@@ -1,0 +1,57 @@
+---
+title: "r-exploring"
+author: "Michael Zargari"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, include= FALSE}
+# include = false completely hides this code chunk and any messages that come out of it as well
+
+library(tidyverse)
+library(GGally)
+library(skimr)
+```
+
+Exploring the data
+
+```{r}
+View(diamonds)
+
+names(diamonds)
+
+dim(diamonds)
+
+summary(diamonds)
+
+head(diamonds)
+
+tail(diamonds)
+
+skimr::skim(diamonds) # You dont need to put skimr::. This is just to show where we are getting the function from
+```
+
+```{r}
+ggpairs(diamonds)
+```
+
+Made a plot for price vs carat prices
+
+```{r}
+ggplot(data = diamonds, aes(x = price, y = carat)) +
+  geom_point()
+```
+
+Making a histogram for carat counts
+
+```{r}
+ggplot(data = diamonds, aes(x = carat)) +
+  geom_histogram()
+```
+
+Making a jitterplot to show price of diamonds vs clarity
+
+```{r}
+ggplot(data = diamonds, aes(x = clarity, y = price)) +
+  geom_jitter(aes(color = clarity))
+```
